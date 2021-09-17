@@ -1,0 +1,82 @@
+body {
+    background-color: #edf6f9;
+}
+.one-field {
+    justify-content: space-between;
+    border: 2px solid #000;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    display: flex;
+    flex:1 30%;
+}
+.number {
+    background-color: #ffe5d9;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45px;
+}
+.number,
+.one-point {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 45px;
+    flex: 1 30%;
+}
+.one-point {
+    background-color: #ffe5d9;
+    border: 1px solid #000;
+    flex-wrap: wrap;
+}
+.main-warper {
+    justify-content: space-between;
+    border: 1px solid #000;
+    max-width: 450px;
+    flex-wrap: wrap;
+    display: flex;
+}
+.const-number {
+    font-weight: 1000;
+    font-size: large;
+}
+.one-line {
+    flex-wrap: nowrap;
+    max-width: 450px;
+    cursor: pointer;
+    flex-flow: row;
+    display: flex;
+}
+.one-line .one-point:nth-child(3n) {
+    border-right: 3px solid #000;
+}
+.one-line .one-point:first-child {
+    border-left: 3px solid #000;
+}
+.main .one-line:nth-child(3n) {
+    border-bottom: 3px solid #000;
+}
+.main .one-line:first-child {
+    border-top: 3px solid #000;
+}
+.selected {
+    background-color: #457b9d;
+}
+.selected-row {
+    background-color: #a8dadc;
+}
+.error {
+    color: red;
+}
+.fill {
+    background-color: #ccc;
+}
+.glow {
+    font-weight: 1500;
+    font-size: 20px;
+    color: #e9c46a;
+}
+.number-selected {
+    background-color: #457b9d;
+}
