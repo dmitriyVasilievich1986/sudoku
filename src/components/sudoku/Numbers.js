@@ -18,7 +18,7 @@ function Numbers(props) {
     return (
         <div className={classNames("number-wraper")}>
             {Object.keys(numberBalance).map(n => (
-                <div className={classNames('row')} key={n}>
+                <div style={{ display: "flex" }} key={n}>
                     <div>
                         <div
                             className={classNames("number", {

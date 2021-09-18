@@ -10,23 +10,35 @@ function StartNewGame(props) {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    React.useEffect(_ => {
+    const newGameClickHandler = _ => {
         dispatch(setMatrix())
-    }, [endGame])
-
-    const clickHandler = _ => {
-        if (!endGame)
-            history.push('/sudoku')
+        history.push('/sudoku')
+    }
+    const continueClickHandler = _ => {
+        history.push('/sudoku')
     }
     return (
         <div className={classNames("new-start-wraper")}>
             <div>
-                <button
-                    className={classNames("start-button")}
-                    onClick={clickHandler}
-                >
-                    Новая игра
-                </button>
+                <div>
+                    <button
+                        className={classNames("start-button")}
+                        onClick={newGameClickHandler}
+                    >
+                        Новая игра
+                    </button>
+                </div>
+                <div className={classNames("mt2")}>
+                    <button
+                        className={classNames("start-button", {
+                            disable: endGame,
+                        })}
+                        onClick={continueClickHandler}
+                        disabled={endGame}
+                    >
+                        Продолжить игру
+                    </button>
+                </div>
             </div>
         </div>
     )

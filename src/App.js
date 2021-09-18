@@ -2,6 +2,7 @@ import { updateState, setMatrix } from './reducers/sudokuSlice'
 import StartNewGame from './components/start/StartNewGame'
 import SudokuPage from './components/sudoku/SudokuPage'
 import { Provider, useDispatch } from 'react-redux'
+import Navbar from './components/navbar/Navbar'
 import reactDOM from 'react-dom'
 import store from './store'
 import React from 'react'
@@ -28,6 +29,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <Navbar />
             <Switch>
                 <Route exact path="/start" component={StartNewGame} />
                 <Route exact path="/sudoku" component={SudokuPage} />

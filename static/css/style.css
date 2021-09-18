@@ -2,6 +2,16 @@ body {
     background-color: #edf6f9;
     margin: 0;
 }
+.link {
+    text-decoration: none;
+    color: #edf6f9;
+    font-weight: 800;
+    font-size: 20px;
+}
+.link:hover {
+    text-decoration: underline #ccc;
+    color: #ccc;
+}
 .new-start-wraper {
     justify-content: center;
     align-items: center;
@@ -18,7 +28,16 @@ body {
     font-size: 20px;
     color: #e5e5e5;
     width: 300px;
-
+}
+.disable {
+    border: 1px solid #fec89a;
+    background-color: inherit;
+    border-radius: 25px;
+    padding: 20px 0px;
+    color: #fec89a;
+    font-weight: 800;
+    font-size: 20px;
+    width: 300px;
 }
 .one-field {
     justify-content: space-between;
@@ -129,22 +148,43 @@ div .one-line:first-child {
 }
 .option-wraper {
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
+}
+.mt1 {
+    margin-top: 5px;
+}
+.mt2 {
+    margin-top: 10px;
+}
+.mr1 {
+    margin-right: 5px;
+}
+.mr2 {
+    margin-right: 10px;
+}
+.mb1 {
+    margin-bottom: 5px;
+}
+.mb2 {
+    margin-bottom: 10px;
+}
+.ml1 {
+    margin-left: 5px;
+}
+.ml2 {
+    margin-left: 10px;
 }
 @media(max-width:900px){
     .number-wraper {
         justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        align-items: center;
         margin-top: 2rem;
-        flex-wrap: wrap;
+        flex-flow: row;
         display: flex;
     }
     .number {
-        flex: 1 45px;
-        height: 45px;
+        height: 35px;
+        width: 35px;
     }
     .number-text {
         display: none;

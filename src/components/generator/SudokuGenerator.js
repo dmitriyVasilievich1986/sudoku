@@ -17,8 +17,7 @@ function pattern(r, c) {
 }
 
 function setEmpty(list) {
-    const empty = shuffle([...Array(81).keys()]).slice(0, 1)
-    // const empty = shuffle([...Array(81).keys()]).slice(0, 40)
+    const empty = shuffle([...Array(81).keys()]).slice(0, parseInt(process.env.REACT_APP_GENERATOR_END))
     empty.map(p => {
         const x = parseInt(p / 10)
         const y = p - x * 10
