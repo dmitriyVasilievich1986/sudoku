@@ -1,5 +1,24 @@
 body {
     background-color: #edf6f9;
+    margin: 0;
+}
+.new-start-wraper {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+.start-button {
+    border: 1px solid #14213d;
+    background-color: #14213d;
+    border-radius: 25px;
+    padding: 20px 0px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 20px;
+    color: #e5e5e5;
+    width: 300px;
+
 }
 .one-field {
     justify-content: space-between;
@@ -15,6 +34,7 @@ body {
     border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
+    flex: 1 45px;
     width: 45px;
 }
 .number,
@@ -23,12 +43,12 @@ body {
     align-items: center;
     display: flex;
     height: 45px;
-    flex: 1 30%;
 }
 .one-point {
     background-color: #ffe5d9;
     border: 1px solid #000;
     flex-wrap: wrap;
+    flex: 1 30%;
 }
 .main-warper {
     justify-content: space-between;
@@ -48,16 +68,29 @@ body {
     flex-flow: row;
     display: flex;
 }
+.sudoku-wraper {
+    flex-wrap: wrap;
+    display: flex;
+}
+.fl1 {
+    flex: 1 100px;
+}
+.fl2 {
+    flex: 2 200px;
+}
+.fl3 {
+    flex: 3 450px;
+}
 .one-line .one-point:nth-child(3n) {
     border-right: 3px solid #000;
 }
 .one-line .one-point:first-child {
     border-left: 3px solid #000;
 }
-.main .one-line:nth-child(3n) {
+div .one-line:nth-child(3n) {
     border-bottom: 3px solid #000;
 }
-.main .one-line:first-child {
+div .one-line:first-child {
     border-top: 3px solid #000;
 }
 .selected {
@@ -79,4 +112,41 @@ body {
 }
 .number-selected {
     background-color: #457b9d;
+}
+.number-wraper {
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+}
+.number-text {
+    margin-left: 1rem;
+    flex: 3;
+}
+.row {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.option-wraper {
+    justify-content: center;
+    margin-top: 3rem;
+    display: flex;
+}
+@media(max-width:900px){
+    .number-wraper {
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        display: flex;
+    }
+    .number {
+        flex: 1 45px;
+        height: 45px;
+    }
+    .number-text {
+        display: none;
+    }
 }

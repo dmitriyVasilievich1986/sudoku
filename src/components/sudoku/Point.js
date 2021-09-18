@@ -1,62 +1,41 @@
+import { updateState } from '../../reducers/sudokuSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import classNames from 'classnames'
 import React from 'react'
 
 function Point(props) {
-    const [selected, updateSelected] = props.selected
-    const [lines, updateLines] = props.sudoku
+    const selected = useSelector(state => state.sudoku.selected)
+    const endGame = useSelector(state => state.sudoku.endGame)
+    const dispatch = useDispatch()
+
     const clickHandler = _ => {
-        updateSelected(props.number.position)
+        if (!endGame)
+            dispatch(updateState({ selected: props.number.position }))
     }
-    const getError = _ => {
-        let error = ""
-        if (
-            selected[0] !== null &&
-            props.number.number.length === 1 &&
-            lines[selected[0]][selected[1]].number.length === 1 &&
-            lines[selected[0]][selected[1]].number[0] === props.number.number[0]
-        ) {
-            error = "glow"
-        }
-        lines.map(l => l.map(p => {
-            if (
-                props.number.number.length === 1 &&
-                p.number.length === 1 &&
-                props.number.number[0] === p.number[0] &&
-                (
-                    (
-                        p.position[1] === props.number.position[1] ||
-                        p.position[0] === props.number.position[0]
-                    ) || (
-                        parseInt(p.position[0] / 3) === parseInt(props.number.position[0] / 3) &&
-                        parseInt(p.position[1] / 3) === parseInt(props.number.position[1] / 3)
-                    )
-                ) && !(
-                    p.position[1] === props.number.position[1] &&
-                    p.position[0] === props.number.position[0]
-                )
-            ) {
-                error = "error"
-            }
-        }))
-        return error
+
+    const isSelected = _ => {
+        return selected[0] === props.number.position[0] && selected[1] === props.number.position[1]
     }
-    const getSelected = _ => {
-        if (selected[0] === props.number.position[0] && selected[1] === props.number.position[1]) {
-            return "selected"
-        } else if (selected[0] === props.number.position[0] || selected[1] === props.number.position[1]) {
-            return "selected-row"
-        } else {
-            return ""
-        }
+
+    const isInSelectedRow = _ => {
+        return selected[0] === props.number.position[0] || selected[1] === props.number.position[1]
     }
+
     return (
         <div
-            id="point"
+            className={classNames("one-point", {
+                "selected-row": !isSelected() && isInSelectedRow(),
+                "const-number": props.number.show,
+                "error": props.number.error,
+                "selected": isSelected(),
+            })}
             onClick={clickHandler}
-            className={`one-point ${getError()} ${props.number.show && 'const-number'} ${getSelected()}`} >
+            id="point"
+        >
             {props.number.number.map(n => (
                 <div key={n}>{n}</div>
             ))}
-        </div>
+        </ div>
     )
 }
 

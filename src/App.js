@@ -1,47 +1,29 @@
-import SudokuGenerator from './components/generator/SudokuGenerator'
-import Line from './components/sudoku/Line'
-import { Provider } from 'react-redux'
-import reactDOM from 'react-dom'
-import React from 'react'
-import Numbers from './components/sudoku/Numbers'
-import Options from './components/sudoku/Options'
-import store from './store'
+import { Provider, useDispatch } from 'react-redux'
+import { updateState, setMatrix } from './reducers/sudokuSlice'
 import StartNewGame from './components/start/StartNewGame'
 import SudokuPage from './components/sudoku/SudokuPage'
+import reactDOM from 'react-dom'
+import React from 'react'
+import store from './store'
+
 import {
     BrowserRouter,
+    Redirect,
     Switch,
     Route,
-    Redirect,
-    Link
 } from "react-router-dom";
 
-function App() {
-    // const [lines, updateLines] = React.useState(null)
-    // const [selected, updateSelected] = React.useState([null, null])
-    // const [nums, updateNums] = React.useState(getObject())
-    // React.useEffect(_ => {
-    //     document.addEventListener('mousedown', function (e) {
-    //         // console.log(e.target.id)
-    //         e.preventDefault()
-    //         if (e.target.id !== 'point' && e.target.id !== 'number') {
-    //             updateSelected([null, null])
-    //         }
-    //     })
-    //     const newLines = SudokuGenerator()
-    //     const newNums = getObject()
-    //     updateLines(newLines)
-    //     newLines.map(l => l.map(p => {
-    //         if (p.number.length > 0) {
-    //             newNums[p.number] = newNums[p.number[0]] + 1 || 1
-    //         }
-    //     }))
-    //     updateNums(newNums)
-    // }, [])
 
-    // if (lines === null) {
-    //     return <h1>Loading...</h1>
-    // }
+function App() {
+    const dispatch = useDispatch()
+
+    React.useEffect(_ => {
+        dispatch(setMatrix())
+        document.addEventListener('mousedown', function (e) {
+            if (e.target.id !== 'point' && e.target.id !== 'number')
+                dispatch(updateState({ selected: [null, null] }))
+        })
+    }, [])
 
     return (
         <BrowserRouter>

@@ -1,61 +1,42 @@
+import { insertNumber } from '../../reducers/sudokuSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import classNames from 'classnames'
 import React from 'react'
 
 function Numbers(props) {
-    const [lines, updateLines] = props.sudoku
-    const [selected, updateSelected] = props.selected
-    const [nums, updateNums] = props.nums
-    const clickHandler = n => {
-        if (selected[0] === null || lines[selected[0]][selected[1]].show === true) {
+    const numberBalance = useSelector(state => state.sudoku.numberBalance)
+    const selected = useSelector(state => state.sudoku.selected)
+    const matrix = useSelector(state => state.sudoku.matrix)
+    const dispatch = useDispatch()
+
+    const clickHandler = number => {
+        if (selected[0] === null || selected[1] === null || matrix[selected[0]][selected[1]].show)
             return
-        }
-        let number = []
-        const item = lines[selected[0]][selected[1]]
-        if (item.number.indexOf(n) >= 0) {
-            number = item.number.filter(i => i !== n)
-        } else {
-            number = [...item.number, n]
-        }
-        if (item.number.length === 1) {
-            updateNums({ ...nums, [item.number[0]]: nums[item.number[0]] - 1 })
-        } else if (item.number.length === 0) {
-            updateNums({ ...nums, [n]: nums[n] + 1 })
-        } else if (item.number.length === 2 && number.length === 1) {
-            updateNums({ ...nums, [number[0]]: nums[number[0]] + 1 })
-        }
-        const newItem = { ...item, number: number }
-        const newLines = lines.map(x => x.map(y => {
-            if (y.position[0] === selected[0] && y.position[1] === selected[1]) {
-                return newItem
-            }
-            return { ...y, error: false }
-        }))
-        updateLines(newLines)
+        dispatch(insertNumber({ number: parseInt(number) }))
     }
-    const getSelected = n => {
-        if (
-            selected[0] !== null &&
-            lines[selected[0]][selected[1]].number.length === 1 &&
-            lines[selected[0]][selected[1]].number[0] === n
-        ) {
-            return "number-selected"
-        }
-        return ""
-    }
+
     return (
-        <div>
-            {[...Array(9).keys()].map(c => (
-                <div style={{ display: 'flex', alignItems: 'center' }} key={c}>
+        <div className={classNames("number-wraper")}>
+            {Object.keys(numberBalance).map(n => (
+                <div className={classNames('row')} key={n}>
                     <div>
                         <div
+                            className={classNames("number", {
+                                selected: selected[0] && matrix[selected[0]][selected[1]].number.indexOf(parseInt(n)) >= 0,
+                                fill: numberBalance[n] - 9 === 0,
+                            })}
+                            onClick={_ => clickHandler(n)}
                             id="number"
-                            onClick={_ => clickHandler(c + 1)}
-                            className={`number ${nums[c + 1] === 9 && "fill"} ${getSelected(c + 1)}`}
                         >
-                            {c + 1}
+                            {n}
                         </div>
                     </div>
-                    <div style={{ flex: "3", marginLeft: '1rem' }}>
-                        {9 - nums[c + 1] >= 0 ? `Осталось: ${9 - nums[c + 1]}` : `Лишних: ${nums[c + 1] - 9}`}
+                    <div className={classNames("number-text")}>
+                        {
+                            9 - numberBalance[n] >= 0 ?
+                                `Осталось: ${9 - numberBalance[n]}` :
+                                `Лишних: ${numberBalance[n] - 9}`
+                        }
                     </div>
                 </div>
             ))}

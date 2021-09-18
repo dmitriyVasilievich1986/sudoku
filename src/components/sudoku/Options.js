@@ -1,39 +1,25 @@
+import { isError, getCube } from '../../reducers/commonFunctions'
+import { useSelector } from 'react-redux'
 import React from 'react'
 
 function Options(props) {
-    const [selected, updateSelected] = props.selected
-    const [lines, updateLines] = props.sudoku
+    const numberBalance = useSelector(state => state.sudoku.numberBalance)
+    const selected = useSelector(state => state.sudoku.selected)
+    const matrix = useSelector(state => state.sudoku.matrix)
+
     const [options, updateOptions] = React.useState([])
     React.useEffect(_ => {
         if (selected[0] === null) {
             return
         }
-        const newOptions = [...Array(9).keys()].filter(n => {
-            let f = true
-            lines.map(l => l.map(p => {
-                if (
-                    (p.position[0] === selected[0] && p.number.indexOf(n + 1) >= 0) ||
-                    (p.position[1] === selected[1] && p.number.indexOf(n + 1) >= 0) ||
-                    (
-                        (
-                            p.position[0] !== selected[0] ||
-                            p.position[1] !== selected[1]
-                        ) && (
-                            parseInt(p.position[0] / 3) === parseInt(selected[0] / 3) &&
-                            parseInt(p.position[1] / 3) === parseInt(selected[1] / 3) &&
-                            p.number.length === 1 &&
-                            p.number.indexOf(n + 1) >= 0
-                        )
-                    )
-                ) {
-                    f = false
-                }
-            }))
-            return f
-        })
-        updateOptions(newOptions.map(o => o + 1))
+        const newOptions = Object.keys(numberBalance).filter(n => (
+            !isError(getCube(matrix, selected), { position: [null, null], number: [n] }) &&
+            !isError(matrix[selected[0]], { position: [null, null], number: [n] }) &&
+            !isError(matrix.map(x => x[selected[1]]), { position: [null, null], number: [n] })
+        ))
+        updateOptions(newOptions)
     }, [selected])
-    if (selected[0] === null || lines[selected[0]][selected[1]].number.length > 0) {
+    if (selected[0] === null || matrix[selected[0]][selected[1]].number.length > 0) {
         return null
     } else if (options.length === 0) {
         return (
