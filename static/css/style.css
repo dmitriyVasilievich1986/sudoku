@@ -1,17 +1,10 @@
+/* region main body */
 body {
     background-color: #edf6f9;
     margin: 0;
 }
-.link {
-    text-decoration: none;
-    color: #edf6f9;
-    font-weight: 800;
-    font-size: 20px;
-}
-.link:hover {
-    text-decoration: underline #ccc;
-    color: #ccc;
-}
+/* endregion */
+/* region navbar */
 .navbar {
     background-color: #03045e;
     margin-bottom: 2rem;
@@ -25,11 +18,60 @@ body {
     padding: 0px 1rem;
     display: flex;
 }
-.new-start-wraper {
-    justify-content: center;
+.link {
+    text-decoration: none;
+    color: #edf6f9;
+    font-weight: 800;
+    font-size: 20px;
+}
+.link:hover {
+    text-decoration: underline #ccc;
+    color: #ccc;
+}
+/* endregion */
+/* region sudoku page */
+.sudoku-wraper {
+    flex-wrap: wrap;
+    display: flex;
+}
+.sudoku-numbers,
+.sudoku-cube {
     align-items: center;
     display: flex;
-    height: 100vh;
+    height: 450px;
+    width: 450px;
+}
+.sudoku-cube {
+    justify-content: center;
+}
+.sudoku-numbers {
+    justify-content: start;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.options {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    width: 450px;
+}
+/* endregion */
+/* region settings */
+.settings-wraper {
+    background-color: #14213d;
+    border: 1px solid #14213d;
+    border-radius: 25px;
+    min-width: 400px;
+    margin: 0px 10px;
+    height: 400px;
+}
+.settings-value {
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    margin: 2rem auto 0px auto;
+    display: flex;
+    color: #ccc;
+    width: 80%;
 }
 select {
     background-color: inherit;
@@ -38,90 +80,26 @@ select {
     width: 100px;
     border: none;
 }
-.check-box {
-    background-color: #ccc;
-}
-.start-button {
-    border: 1px solid #14213d;
-    background-color: #14213d;
-    border-radius: 25px;
-    padding: 20px 0px;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 20px;
-    color: #e5e5e5;
-    width: 300px;
-}
-.disable {
-    border: 1px solid #fec89a;
-    background-color: inherit;
-    border-radius: 25px;
-    padding: 20px 0px;
-    color: #fec89a;
-    font-weight: 800;
-    font-size: 20px;
-    width: 300px;
-}
-.one-field {
-    justify-content: space-between;
-    border: 2px solid #000;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+/* endregion */
+/* region sudoku line and point */
+.one-line {
+    justify-content: center;
     display: flex;
-    flex:1 30%;
 }
-.number {
+.one-point {
     background-color: #ffe5d9;
     border: 1px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1 45px;
-    width: 45px;
-}
-.number,
-.one-point {
     justify-content: center;
     align-items: center;
-    display: flex;
-    height: 45px;
-}
-.one-point {
-    background-color: #ffe5d9;
-    border: 1px solid #000;
     flex-wrap: wrap;
-    flex: 1 30%;
-}
-.main-warper {
-    justify-content: space-between;
-    border: 1px solid #000;
-    max-width: 450px;
-    flex-wrap: wrap;
+    cursor: pointer;
     display: flex;
+    height: 40px;
+    width: 40px;
 }
 .const-number {
     font-weight: 1000;
     font-size: large;
-}
-.one-line {
-    flex-wrap: nowrap;
-    max-width: 450px;
-    cursor: pointer;
-    flex-flow: row;
-    display: flex;
-}
-.sudoku-wraper {
-    flex-wrap: wrap;
-    display: flex;
-}
-.fl1 {
-    flex: 1 100px;
-}
-.fl2 {
-    flex: 2 200px;
-}
-.fl3 {
-    flex: 3 450px;
 }
 .one-line .one-point:nth-child(3n) {
     border-right: 3px solid #000;
@@ -148,54 +126,65 @@ div .one-line:first-child {
     background-color: #ccc;
 }
 .glow {
-    font-weight: 1500;
+    font-weight: 1000;
     color: #5a189a;
     font-size: 23px;
 }
 .number-selected {
     background-color: #457b9d;
 }
-.number-wraper {
-    justify-content: space-between;
-    flex-direction: column;
+/* endregion */
+/* region numbers */
+.number-line {
+    align-items: center;
     display: flex;
+    width: 100%;
 }
 .number-text {
     margin-left: 1rem;
     flex: 3;
 }
-.settings-wraper {
-    background-color: #14213d;
-    border: 1px solid #14213d;
-    border-radius: 25px;
-    min-width: 400px;
-    margin: 0px 10px;
-    height: 400px;
-}
-.settings-value {
-    border-bottom: 1px solid #ccc;
-    justify-content: space-between;
-    margin: 2rem auto 0px auto;
-    display: flex;
-    color: #ccc;
-    width: 80%;
-}
-.options {
-    margin-bottom: 3rem;
-    display: flex;
-    height: 40px;
-}
-.d-flex {
-    display: flex;
-}
-.row {
+/* endregion */
+/* region new game */
+.new-start-wraper {
     justify-content: center;
     align-items: center;
     display: flex;
+    height: 100vh;
 }
-.option-wraper {
-    justify-content: center;
-    margin-top: 2rem;
+.start-button {
+    border: 1px solid #14213d;
+    background-color: #14213d;
+    border-radius: 25px;
+    padding: 20px 0px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 20px;
+    color: #e5e5e5;
+    width: 300px;
+}
+.disable {
+    border: 1px solid #fec89a;
+    background-color: inherit;
+    border-radius: 25px;
+    padding: 20px 0px;
+    color: #fec89a;
+    font-weight: 800;
+    font-size: 20px;
+    width: 300px;
+}
+/* endregion */
+/* region main purpose */
+.fl1 {
+    flex: 1 100px;
+}
+.fl2 {
+    flex: 2 200px;
+}
+.fl3 {
+    flex: 3 450px;
+}
+.d-flex {
     display: flex;
 }
 .mt1 {
@@ -222,18 +211,20 @@ div .one-line:first-child {
 .ml2 {
     margin-left: 10px;
 }
+/* endregion */
+/* region media */
 @media(max-width:900px){
-    .number-wraper {
+    .sudoku-numbers {
         justify-content: center;
-        margin-top: 2rem;
-        flex-flow: row;
         display: flex;
+        width: 450px;
+        height: 40px;
     }
-    .number {
-        height: 35px;
-        width: 35px;
+    .number-line {
+        width: 40px;
     }
     .number-text {
         display: none;
     }
 }
+/* endregion */

@@ -7,6 +7,7 @@ import React from 'react'
 
 function StartNewGame(props) {
     const endGame = useSelector(state => state.sudoku.endGame)
+    const matrix = useSelector(state => state.sudoku.matrix)
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -23,10 +24,10 @@ function StartNewGame(props) {
                 <div>
                     <button
                         className={classNames("start-button", {
-                            disable: endGame,
+                            disable: endGame || matrix === null,
                         })}
                         onClick={continueClickHandler}
-                        disabled={endGame}
+                        disabled={endGame || matrix === null}
                     >
                         Продолжить игру
                     </button>

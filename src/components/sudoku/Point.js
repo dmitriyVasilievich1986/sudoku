@@ -45,7 +45,7 @@ function Point(props) {
             {props.number.number.map(n => (
                 <div key={n}>{n}</div>
             ))}
-        </ div>
+        </div>
     )
 }
 

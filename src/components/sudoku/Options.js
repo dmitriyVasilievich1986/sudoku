@@ -22,18 +22,18 @@ function Options(props) {
         updateOptions(newOptions)
     }, [selected])
     if (!help || selected[0] === null || matrix[selected[0]][selected[1]].number.length > 0) {
-        return <div className={classNames('options')} />
+        return null
     } else if (
         options.length === 0
     ) {
         return (
-            <div className={classNames("options")}>
+            <div className={classNames("d-flex ml2")}>
                 <h3>Нет доступных вариантов</h3>
             </div>
         )
     }
     return (
-        <div className={classNames("options")}>
+        <div className={classNames("d-flex ml2")}>
             <h3>Возможные варианты:</h3>
             {options.map(o => <h3 key={o} className={classNames("ml2")}>{o}</h3>)}
         </div>

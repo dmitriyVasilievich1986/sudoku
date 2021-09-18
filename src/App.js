@@ -20,7 +20,6 @@ function App() {
     const dispatch = useDispatch()
 
     React.useEffect(_ => {
-        dispatch(setMatrix())
         document.title = process.env.REACT_APP_NAME
         document.addEventListener('mousedown', function (e) {
             if (e.target.id !== 'point' && e.target.id !== 'number')

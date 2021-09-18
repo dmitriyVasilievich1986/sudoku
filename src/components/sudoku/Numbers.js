@@ -16,20 +16,18 @@ function Numbers(props) {
     }
 
     return (
-        <div className={classNames("number-wraper")}>
+        <div className={classNames("sudoku-numbers")}>
             {Object.keys(numberBalance).map(n => (
-                <div style={{ display: "flex" }} key={n}>
-                    <div>
-                        <div
-                            className={classNames("number", {
-                                selected: selected[0] && matrix[selected[0]][selected[1]].number.indexOf(parseInt(n)) >= 0,
-                                fill: numberBalance[n] - 9 === 0,
-                            })}
-                            onClick={_ => clickHandler(n)}
-                            id="number"
-                        >
-                            {n}
-                        </div>
+                <div key={n} className={classNames("number-line")}>
+                    <div
+                        className={classNames("one-point", {
+                            selected: selected[0] && matrix[selected[0]][selected[1]].number.indexOf(parseInt(n)) >= 0,
+                            fill: numberBalance[n] - 9 === 0,
+                        })}
+                        onClick={_ => clickHandler(n)}
+                        id="number"
+                    >
+                        {n}
                     </div>
                     <div className={classNames("number-text")}>
                         {

@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 import Numbers from './Numbers'
@@ -16,19 +16,19 @@ function SudokuPage(props) {
     }
 
     if (matrix === null)
-        return <h1>Loading...</h1>
+        return <Redirect to='start' />
     return (
         <div>
             <div className={classNames("sudoku-wraper")}>
                 <div className={classNames("fl2")} />
                 <div className={classNames("fl3")}>
-                    {matrix.map((l, i) => (
-                        <Line
-                            className={classNames("one-line")}
-                            line={l}
-                            key={i}
-                        />
-                    ))}
+                    <div className={classNames("sudoku-cube")}>
+                        <div>
+                            {matrix.map((l, i) => (
+                                <Line line={l} key={i} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
                 <div className={classNames("fl3")}>
                     <Numbers />
@@ -36,7 +36,9 @@ function SudokuPage(props) {
                 <div className={classNames("fl3")} />
             </div>
             <div className={classNames("option-wraper")}>
-                <Options />
+                <div className={classNames("options")}>
+                    <Options />
+                </div>
                 {
                     endGame &&
                     <button
