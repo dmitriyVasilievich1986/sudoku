@@ -12,11 +12,34 @@ body {
     text-decoration: underline #ccc;
     color: #ccc;
 }
+.navbar {
+    background-color: #03045e;
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    display: flex;
+    height: 80px;
+}
+.navbar-main {
+    justify-content: space-between;
+    padding: 0px 1rem;
+    display: flex;
+}
 .new-start-wraper {
     justify-content: center;
     align-items: center;
     display: flex;
     height: 100vh;
+}
+select {
+    background-color: inherit;
+    outline: none;
+    color: #ccc;
+    width: 100px;
+    border: none;
+}
+.check-box {
+    background-color: #ccc;
 }
 .start-button {
     border: 1px solid #14213d;
@@ -126,8 +149,8 @@ div .one-line:first-child {
 }
 .glow {
     font-weight: 1500;
-    font-size: 20px;
-    color: #e9c46a;
+    color: #5a189a;
+    font-size: 23px;
 }
 .number-selected {
     background-color: #457b9d;
@@ -140,6 +163,30 @@ div .one-line:first-child {
 .number-text {
     margin-left: 1rem;
     flex: 3;
+}
+.settings-wraper {
+    background-color: #14213d;
+    border: 1px solid #14213d;
+    border-radius: 25px;
+    min-width: 400px;
+    margin: 0px 10px;
+    height: 400px;
+}
+.settings-value {
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    margin: 2rem auto 0px auto;
+    display: flex;
+    color: #ccc;
+    width: 80%;
+}
+.options {
+    margin-bottom: 3rem;
+    display: flex;
+    height: 40px;
+}
+.d-flex {
+    display: flex;
 }
 .row {
     justify-content: center;

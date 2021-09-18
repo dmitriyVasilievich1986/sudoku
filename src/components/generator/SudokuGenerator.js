@@ -16,8 +16,8 @@ function pattern(r, c) {
     return (3 * (r % 3) + parseInt(r / 3) + c) % 9
 }
 
-function setEmpty(list) {
-    const empty = shuffle([...Array(81).keys()]).slice(0, parseInt(process.env.REACT_APP_GENERATOR_END))
+function setEmpty(list, emptyCount) {
+    const empty = shuffle([...Array(81).keys()]).slice(0, emptyCount)
     empty.map(p => {
         const x = parseInt(p / 10)
         const y = p - x * 10
@@ -33,7 +33,7 @@ function getList() {
     return list
 }
 
-function SudokuGenerator() {
+function SudokuGenerator(emptyCount) {
     const rows = getList()
     const cols = getList()
     const nums = shuffle([...Array(9).keys()].map(x => x + 1))
@@ -46,7 +46,7 @@ function SudokuGenerator() {
             show: true,
         }
     }))
-    setEmpty(sudokuFields)
+    setEmpty(sudokuFields, emptyCount)
     return sudokuFields
 }
 

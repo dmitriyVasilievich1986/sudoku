@@ -1,22 +1,16 @@
-import React from 'react'
 import { Link } from "react-router-dom";
+import classNames from 'classnames'
+import React from 'react'
 
 function Navbar(props) {
     return (
-        <div
-            style={{
-                height: "80px",
-                marginBottom: "2rem",
-                backgroundColor: "#03045e",
-                display: "flex",
-                alignItems: "center",
-            }}>
-            <div className="fl3" />
-            <div className="fl3" style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className={classNames("navbar")}>
+            <div className={classNames("fl3")} />
+            <div className={classNames("fl3", "navbar-main")}>
                 <Link className="link" to="/">Главная</Link>
                 <Link className="link" to="/settings">Настройки</Link>
             </div>
-            <div className="fl3" />
+            <div className={classNames("fl3")} />
         </div>
     )
 }

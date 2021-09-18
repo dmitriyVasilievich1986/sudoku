@@ -31,7 +31,7 @@ export const sudokuReducer = createSlice({
             }
         },
         setMatrix: (state) => {
-            const matrix = SudokuGenerator()
+            const matrix = SudokuGenerator(state.emptyCount)
             const balance = getBalance()
             matrix.map(l => l.map(p => {
                 if (p.number.length > 0)

@@ -1,11 +1,13 @@
 import { isError, getCube } from '../../reducers/commonFunctions'
 import { useSelector } from 'react-redux'
 import React from 'react'
+import classNames from 'classnames'
 
 function Options(props) {
     const numberBalance = useSelector(state => state.sudoku.numberBalance)
     const selected = useSelector(state => state.sudoku.selected)
     const matrix = useSelector(state => state.sudoku.matrix)
+    const help = useSelector(state => state.sudoku.help)
 
     const [options, updateOptions] = React.useState([])
     React.useEffect(_ => {
@@ -19,17 +21,21 @@ function Options(props) {
         ))
         updateOptions(newOptions)
     }, [selected])
-    if (selected[0] === null || matrix[selected[0]][selected[1]].number.length > 0) {
-        return null
-    } else if (options.length === 0) {
+    if (!help || selected[0] === null || matrix[selected[0]][selected[1]].number.length > 0) {
+        return <div className={classNames('options')} />
+    } else if (
+        options.length === 0
+    ) {
         return (
-            <h3>Нет доступных вариантов</h3>
+            <div className={classNames("options")}>
+                <h3>Нет доступных вариантов</h3>
+            </div>
         )
     }
     return (
-        <div style={{ display: "flex" }}>
+        <div className={classNames("options")}>
             <h3>Возможные варианты:</h3>
-            {options.map(o => <h3 key={o} style={{ marginLeft: "10px" }}>{o}</h3>)}
+            {options.map(o => <h3 key={o} className={classNames("ml2")}>{o}</h3>)}
         </div>
     )
 }

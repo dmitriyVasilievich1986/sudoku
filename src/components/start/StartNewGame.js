@@ -22,14 +22,6 @@ function StartNewGame(props) {
             <div>
                 <div>
                     <button
-                        className={classNames("start-button")}
-                        onClick={newGameClickHandler}
-                    >
-                        Новая игра
-                    </button>
-                </div>
-                <div className={classNames("mt2")}>
-                    <button
                         className={classNames("start-button", {
                             disable: endGame,
                         })}
@@ -37,6 +29,14 @@ function StartNewGame(props) {
                         disabled={endGame}
                     >
                         Продолжить игру
+                    </button>
+                </div>
+                <div className={classNames("mt2")}>
+                    <button
+                        className={classNames("start-button")}
+                        onClick={newGameClickHandler}
+                    >
+                        Новая игра
                     </button>
                 </div>
             </div>
