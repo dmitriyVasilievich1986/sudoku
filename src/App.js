@@ -1,10 +1,10 @@
-import { Provider, useDispatch } from 'react-redux'
 import { updateState, setMatrix } from './reducers/sudokuSlice'
 import StartNewGame from './components/start/StartNewGame'
 import SudokuPage from './components/sudoku/SudokuPage'
+import { Provider, useDispatch } from 'react-redux'
 import reactDOM from 'react-dom'
-import React from 'react'
 import store from './store'
+import React from 'react'
 
 import {
     BrowserRouter,
@@ -19,6 +19,7 @@ function App() {
 
     React.useEffect(_ => {
         dispatch(setMatrix())
+        document.title = process.env.REACT_APP_NAME
         document.addEventListener('mousedown', function (e) {
             if (e.target.id !== 'point' && e.target.id !== 'number')
                 dispatch(updateState({ selected: [null, null] }))
