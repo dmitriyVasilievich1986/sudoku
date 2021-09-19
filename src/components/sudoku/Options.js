@@ -33,9 +33,9 @@ function Options(props) {
         )
     }
     return (
-        <div className={classNames("d-flex ml2")}>
-            <h3>Возможные варианты:</h3>
-            {options.map(o => <h3 key={o} className={classNames("ml2")}>{o}</h3>)}
+        <div className={classNames("d-flex")}>
+            <h3>Все доступные варианты:</h3>
+            {options.map(o => <h3 key={o} className={classNames("ml1")}>{o}</h3>)}
         </div>
     )
 }

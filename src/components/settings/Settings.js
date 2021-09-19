@@ -20,26 +20,23 @@ function Settings() {
     }
 
     return (
-        <div className={classNames("d-flex")} style={{ flexWrap: "wrap" }}>
-            <div className={classNames("fl3")} />
-            <div className={classNames("fl3")}>
-                <div className={classNames("settings-wraper")}>
-                    <div className={classNames("settings-value")}>
-                        <p>Сложность:</p>
-                        <select value={emptyCount} onChange={changeDifficultyHandler}>
-                            <option value="20">Легко</option>
-                            <option value="40">Средне</option>
-                            <option value="60">Тяжело</option>
-                        </select>
-                    </div>
-                    <div className={classNames("settings-value")}>
-                        <p>Подсказки:</p>
-                        <Switch checked={help} onChange={changeHelpHandler} />
-                    </div>
+        <div className={classNames("settings-window")}>
+            <div className={classNames("settings-wraper")}>
+                <div className={classNames("settings-value")}>
+                    <p>Сложность:</p>
+                    <select value={emptyCount} onChange={changeDifficultyHandler}>
+                        <option value="1">Тест</option>
+                        <option value="20">Легко</option>
+                        <option value="40">Средне</option>
+                        <option value="60">Тяжело</option>
+                    </select>
+                </div>
+                <div className={classNames("settings-value")}>
+                    <p>Подсказки:</p>
+                    <Switch checked={help} onChange={changeHelpHandler} />
                 </div>
             </div>
-            <div className={classNames("fl3")} />
-        </div>
+        </div >
     )
 }
 

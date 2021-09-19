@@ -20,8 +20,8 @@ function SudokuPage(props) {
     return (
         <div>
             <div className={classNames("sudoku-wraper")}>
-                <div className={classNames("fl2")} />
-                <div className={classNames("fl3")}>
+                <div className={classNames("fl3")} />
+                <div className={classNames("fl2")}>
                     <div className={classNames("sudoku-cube")}>
                         <div>
                             {matrix.map((l, i) => (
@@ -30,24 +30,26 @@ function SudokuPage(props) {
                         </div>
                     </div>
                 </div>
-                <div className={classNames("fl3")}>
+                <div className={classNames("fl2")}>
                     <Numbers />
                 </div>
                 <div className={classNames("fl3")} />
             </div>
-            <div className={classNames("option-wraper")}>
-                <div className={classNames("options")}>
+            <div className={classNames("sudoku-wraper")}>
+                <div className={classNames("fl3")} />
+                <div className={classNames("option-wraper")}>
                     <Options />
+                    {
+                        endGame &&
+                        <button
+                            className={classNames("start-button")}
+                            onClick={clickHandler}
+                        >
+                            Завершить игру
+                        </button>
+                    }
                 </div>
-                {
-                    endGame &&
-                    <button
-                        className={classNames("start-button")}
-                        onClick={clickHandler}
-                    >
-                        Завершить игру
-                    </button>
-                }
+                <div className={classNames("fl3")} />
             </div>
         </div>
     )
