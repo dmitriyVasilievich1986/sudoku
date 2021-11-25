@@ -18,38 +18,28 @@ function SudokuPage(props) {
     if (matrix === null)
         return <Redirect to='start' />
     return (
-        <div>
-            <div className={classNames("sudoku-wraper")}>
-                <div className={classNames("fl3")} />
-                <div className={classNames("fl2")}>
-                    <div className={classNames("sudoku-cube")}>
-                        <div>
-                            {matrix.map((l, i) => (
-                                <Line line={l} key={i} />
-                            ))}
-                        </div>
-                    </div>
+        <div className={classNames("sudoku-wraper")}>
+            <div className={classNames("sudoku-cube")}>
+                <div>
+                    {matrix.map((l, i) => (
+                        <Line line={l} key={i} />
+                    ))}
                 </div>
-                <div className={classNames("fl2")}>
-                    <Numbers />
-                </div>
-                <div className={classNames("fl3")} />
             </div>
-            <div className={classNames("sudoku-wraper")}>
-                <div className={classNames("fl3")} />
-                <div className={classNames("option-wraper")}>
-                    <Options />
-                    {
-                        endGame &&
-                        <button
-                            className={classNames("start-button")}
-                            onClick={clickHandler}
-                        >
-                            Завершить игру
-                        </button>
-                    }
-                </div>
-                <div className={classNames("fl3")} />
+            <div className={classNames("sudoku-cube")}>
+                <Numbers />
+            </div>
+            <div className={classNames("sudoku-cube")}>
+                <Options />
+                {
+                    endGame &&
+                    <button
+                        className={classNames("start-button")}
+                        onClick={clickHandler}
+                    >
+                        Завершить игру
+                    </button>
+                }
             </div>
         </div>
     )
