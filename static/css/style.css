@@ -99,6 +99,7 @@ select {
     border: 3px solid #ccc;
     position: absolute;
     color: #000;
+    z-index: 2;
 }
 .selector-line {
     justify-content: start;
