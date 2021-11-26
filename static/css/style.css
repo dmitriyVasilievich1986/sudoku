@@ -85,6 +85,38 @@ select {
     width: 100px;
     border: none;
 }
+.selector {
+    justify-content: center;
+    display: flex;
+}
+.selector-field,
+.selector {
+    cursor: pointer;
+    width: 120px;
+}
+.selector-field {
+    background-color: white;
+    border: 3px solid #ccc;
+    position: absolute;
+    color: #000;
+}
+.selector-line {
+    justify-content: start;
+    padding-left: 10px;
+    display: flex;
+}
+.selector-field > .selector-line {
+    border-bottom: 1px solid #ccc;
+}
+.selector-field > .selector-line:last-child {
+    border-bottom: none;
+}
+.selector-line:hover {
+    background-color: #ccc;
+}
+.d-none {
+    display: none;
+}
 /* endregion */
 /* region sudoku line and point */
 .one-line {

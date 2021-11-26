@@ -1,18 +1,25 @@
+import { updateState } from '../../reducers/sudokuSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
-import { updateState } from '../../reducers/sudokuSlice'
+import Selector from './Selector'
 import React from 'react'
 
 import Switch from '@material-ui/core/Switch';
 
+const difficultLevels = [
+    { value: "1", text: "Тест", },
+    { value: "20", text: "Легкий", },
+    { value: "40", text: "Средний", },
+    { value: "60", text: "Тяжелый", },
+]
 
 function Settings() {
     const emptyCount = useSelector(state => state.sudoku.emptyCount)
     const help = useSelector(state => state.sudoku.help)
     const dispatch = useDispatch()
 
-    const changeDifficultyHandler = e => {
-        dispatch(updateState({ emptyCount: e.target.value }))
+    const changeDifficultyHandler = v => {
+        dispatch(updateState({ emptyCount: v }))
     }
 
     const changeHelpHandler = _ => {
@@ -24,12 +31,7 @@ function Settings() {
             <div className={classNames("settings-wraper")}>
                 <div className={classNames("settings-value")}>
                     <p>Сложность:</p>
-                    <select value={emptyCount} onChange={changeDifficultyHandler}>
-                        <option value="1">Тест</option>
-                        <option value="20">Легко</option>
-                        <option value="40">Средне</option>
-                        <option value="60">Тяжело</option>
-                    </select>
+                    <Selector selected={emptyCount} values={difficultLevels} onChange={changeDifficultyHandler} />
                 </div>
                 <div className={classNames("settings-value")}>
                     <p>Подсказки:</p>
