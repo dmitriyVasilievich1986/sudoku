@@ -27,8 +27,8 @@ function StartNewGame(props) {
                         className={classNames("start-button", {
                             disable: endGame || matrix === null,
                         })}
-                        onClick={continueClickHandler}
                         disabled={endGame || matrix === null}
+                        onClick={continueClickHandler}
                     >
                         Продолжить игру
                     </button>
