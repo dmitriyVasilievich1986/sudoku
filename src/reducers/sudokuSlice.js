@@ -8,6 +8,11 @@ export const sudokuReducer = createSlice({
     name: 'sudoku',
     reducers: {
         updateState: (state, action) => { return { ...state, ...action.payload } },
+        updateTimer: (state) => {
+            if (!state.endGame) {
+                state.timer += 1
+            }
+        },
         insertNumber: (state, action) => {
             const { number } = action.payload
             const item = state.matrix[state.selected[0]][state.selected[1]]
@@ -42,6 +47,6 @@ export const sudokuReducer = createSlice({
     },
 })
 
-export const { updateState, insertNumber, setMatrix } = sudokuReducer.actions
+export const { updateState, insertNumber, setMatrix, updateTimer } = sudokuReducer.actions
 
 export default sudokuReducer.reducer

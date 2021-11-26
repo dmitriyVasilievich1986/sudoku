@@ -71,4 +71,5 @@ export const initialState = {
     matrix: null,
     help: true,
     errors: 0,
+    timer: 0,
 }

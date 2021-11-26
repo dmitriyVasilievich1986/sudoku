@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { setMatrix } from '../../reducers/sudokuSlice'
+import { setMatrix, updateState } from '../../reducers/sudokuSlice'
 import { useHistory } from "react-router-dom"
 import classNames from 'classnames'
 import React from 'react'
@@ -12,6 +12,7 @@ function StartNewGame(props) {
     const history = useHistory()
 
     const newGameClickHandler = _ => {
+        dispatch(updateState({ timer: 0 }))
         dispatch(setMatrix())
         history.push('/sudoku')
     }

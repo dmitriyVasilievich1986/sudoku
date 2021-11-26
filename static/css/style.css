@@ -7,7 +7,6 @@ body {
 /* region navbar */
 .navbar {
     background-color: #03045e;
-    margin-bottom: 2rem;
     align-items: center;
     flex-wrap: wrap;
     display: flex;
@@ -30,6 +29,13 @@ body {
 }
 /* endregion */
 /* region sudoku page */
+.settings-wraper,
+.sudoku-numbers,
+.option-wraper,
+.timer {
+    max-width: 450px;
+    width: 100vw;
+}
 .sudoku-wraper {
     flex-wrap: wrap;
     display: flex;
@@ -44,11 +50,9 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 3rem;
-    max-width: 450px;
     margin-top: 3rem;
     display: flex;
     height: 50px;
-    width: 100vw;
 }
 /* endregion */
 /* region settings */
@@ -63,10 +67,8 @@ body {
     background-color: #14213d;
     border: 1px solid #14213d;
     border-radius: 25px;
-    max-width: 450px;
     margin: 0px 10px;
     height: 400px;
-    width: 100vw;
 }
 .settings-value {
     border-bottom: 1px solid #ccc;
@@ -162,9 +164,9 @@ div .one-line:first-child {
     border-radius: 25px;
     padding: 20px 0px;
     font-weight: 800;
+    color: #e5e5e5;
     cursor: pointer;
     font-size: 20px;
-    color: #e5e5e5;
     width: 300px;
 }
 .disable {
@@ -219,9 +221,7 @@ div .one-line:first-child {
 /* region media */
 .sudoku-numbers {
     justify-content: center;
-    max-width: 450px;
     display: flex;
-    width: 100vw;
     height: 40px;
 }
 .number-line {
