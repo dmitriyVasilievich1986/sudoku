@@ -12,6 +12,17 @@ function Login(props) {
     const [login, updateLogin] = React.useState("")
     const dispatch = useDispatch()
 
+    React.useEffect(_ => {
+        window.addEventListener('keydown', keyDownHandler)
+        return _ => window.removeEventListener("keydown", keyDownHandler)
+    }, [])
+
+    const keyDownHandler = e => {
+        if (e.key == "Enter") {
+            loginHandler()
+        }
+    }
+
     const loginHandler = _ => {
         const data = {
             password: password,
@@ -32,14 +43,14 @@ function Login(props) {
     return (
         <div className={classNames("settings-window")}>
             <div className={classNames("settings-wraper")}>
-                <div className={classNames("login-wrapper")}>
+                <div className={classNames("settings-inner-box")}>
                     <div className={classNames("login-row")}>
-                        <p>Имя:</p>
-                        <input type="text" placeholder="имя" value={login} onChange={e => updateLogin(e.target.value)} />
+                        <p>Логин:</p>
+                        <input type="text" placeholder="логин" value={login} onChange={e => updateLogin(e.target.value)} />
                     </div>
                     <div className={classNames("login-row")}>
                         <p>Пароль:</p>
-                        <input type="text" placeholder="Пароль" value={password} onChange={e => updatePassword(e.target.value)} />
+                        <input type="text" placeholder="пароль" value={password} onChange={e => updatePassword(e.target.value)} />
                     </div>
                 </div>
                 <div className={classNames("login-button")}>

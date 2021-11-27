@@ -19,6 +19,10 @@ app.post('/api/account/', urlencodedParser, (req, res) => {
     res.send('{"username":"root"}')
 })
 
+app.patch('/api/account/', urlencodedParser, (req, res) => {
+    res.send('{"username":"root"}')
+})
+
 app.post('/api/account/logout/', urlencodedParser, (req, res) => {
     res.send('ok')
 })

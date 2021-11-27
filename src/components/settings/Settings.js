@@ -31,13 +31,15 @@ function Settings() {
     return (
         <div className={classNames("settings-window")}>
             <div className={classNames("settings-wraper")}>
-                <div className={classNames("settings-value")}>
-                    <p>Сложность:</p>
-                    <Selector selected={emptyCount} values={difficultLevels} onChange={changeDifficultyHandler} />
-                </div>
-                <div className={classNames("settings-value")}>
-                    <p>Подсказки:</p>
-                    <Switch checked={help} onChange={changeHelpHandler} />
+                <div className={classNames("settings-inner-box")}>
+                    <div className={classNames("settings-value")}>
+                        <p>Сложность:</p>
+                        <Selector selected={emptyCount} values={difficultLevels} onChange={changeDifficultyHandler} />
+                    </div>
+                    <div className={classNames("settings-value")}>
+                        <p>Подсказки:</p>
+                        <Switch checked={help} onChange={changeHelpHandler} />
+                    </div>
                 </div>
             </div>
         </div >

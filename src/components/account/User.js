@@ -1,7 +1,9 @@
 const IUser = props => {
-    const { username } = props
+    const { username, name, surname } = props
     return {
-        username: username,
+        username: username || "",
+        surname: surname || "",
+        name: name || "",
     }
 }
 

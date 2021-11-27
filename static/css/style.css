@@ -64,11 +64,15 @@ body {
     display: flex;
 }
 .settings-wraper {
+    padding: 3rem 15px 2rem 15px;
     background-color: #14213d;
     border: 1px solid #14213d;
     border-radius: 25px;
     margin: 0px 10px;
-    height: 400px;
+}
+.settings-inner-box {
+    margin-bottom: 2rem;
+    min-height: 160px;
 }
 .settings-value {
     border-bottom: 1px solid #ccc;
