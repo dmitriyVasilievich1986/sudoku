@@ -7,6 +7,7 @@ import axios from 'axios'
 import React from 'react'
 
 function Account(props) {
+    const token = useSelector(state => state.sudoku.token)
     const user = useSelector(state => state.sudoku.user)
     const [surname, updateSurname] = React.useState("")
     const [name, updateName] = React.useState("")
@@ -25,6 +26,7 @@ function Account(props) {
 
     const updateAccountHandler = _ => {
         const data = {
+            token: `token ${token}`,
             surname: surname,
             name: name,
         }
@@ -53,7 +55,7 @@ function Account(props) {
                 </div>
                 <div className={classNames("login-button")}>
                     <button onClick={updateAccountHandler} className={classNames("login")}>
-                        изменить
+                        сохранить
                     </button>
                 </div>
             </div>

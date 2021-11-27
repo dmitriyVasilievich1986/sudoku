@@ -14,7 +14,7 @@ function Navbar(props) {
 
     React.useEffect(_ => {
         if (token !== null) {
-            const data = { token: token }
+            const data = { token: `token ${token}` }
             axios.post("/api/account", { data: data })
                 .then(data => {
                     const user = IUser(data.data)
