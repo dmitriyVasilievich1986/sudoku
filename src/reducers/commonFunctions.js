@@ -64,12 +64,12 @@ export function checkEndGame(balance, errors) {
 }
 
 export const initialState = {
-    emptyCount: parseInt(process.env.REACT_APP_GENERATOR_END),
+    emptyCount: localStorage.getItem("emptyCount") || parseInt(process.env.REACT_APP_GENERATOR_END),
+    help: localStorage.getItem("help") !== null ? localStorage.getItem("help") == 'true' : true,
     selected: [null, null],
     numberBalance: null,
     endGame: false,
     matrix: null,
-    help: true,
     errors: 0,
     timer: 0,
 }

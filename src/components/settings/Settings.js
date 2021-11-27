@@ -19,10 +19,12 @@ function Settings() {
     const dispatch = useDispatch()
 
     const changeDifficultyHandler = v => {
+        localStorage.setItem("emptyCount", v)
         dispatch(updateState({ emptyCount: v }))
     }
 
     const changeHelpHandler = _ => {
+        localStorage.setItem("help", !help)
         dispatch(updateState({ help: !help }))
     }
 

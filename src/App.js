@@ -20,6 +20,7 @@ function App() {
     const dispatch = useDispatch()
 
     React.useEffect(_ => {
+        console.log(localStorage.getItem("help") == 'true')
         document.title = process.env.REACT_APP_NAME
         document.addEventListener('mousedown', function (e) {
             if (e.target.id !== 'point' && e.target.id !== 'number')
