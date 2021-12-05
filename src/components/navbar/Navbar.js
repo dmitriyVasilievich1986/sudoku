@@ -39,7 +39,8 @@ function Navbar(props) {
     }
 
     const logoutHandler = _ => {
-        axios.post("/api/account/logout")
+        const headers = { Authorization: `token ${token}` }
+        axios.get("/api/account/logout/", { headers: headers })
             .then(_ => {
                 localStorage.removeItem("token")
                 dispatch(updateState({ user: null, token: null }))
