@@ -8,32 +8,23 @@ import axios from 'axios'
 import React from 'react'
 
 function Account(props) {
+    const user = useSelector(state => state.sudoku.user)
+
+    const [surname, updateSurname] = React.useState(user?.surname || "")
+    const [name, updateName] = React.useState(user?.name || "")
+
     const [surnameError, updateSurnameError] = React.useState("")
     const [nameError, updateNameError] = React.useState("")
     const token = useSelector(state => state.sudoku.token)
-    const user = useSelector(state => state.sudoku.user)
-    const [surname, updateSurname] = React.useState("")
-    const [name, updateName] = React.useState("")
     const dispatch = useDispatch()
-
-    React.useEffect(_ => {
-        window.addEventListener('keydown', keyDownHandler)
-        return _ => window.removeEventListener("keydown", keyDownHandler)
-    }, [])
-
-    const keyDownHandler = e => {
-        if (e.key == "Enter") {
-            updateAccountHandler()
-        }
-    }
 
     const updateAccountHandler = _ => {
         const data = {
-            token: `token ${token}`,
             surname: surname,
             name: name,
         }
-        axios.patch('/api/account/', data)
+        const headers = { Authorization: `token ${token}` }
+        axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
             .then(data => {
                 const user = IUser(data.data)
                 dispatch(updateState({ user: user }))
