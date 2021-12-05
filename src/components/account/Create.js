@@ -7,17 +7,17 @@ import axios from 'axios'
 import React from 'react'
 
 function Create() {
-    const [PasswordError, updatePasswordError] = React.useState("")
-    const [loginError, updateLoginError] = React.useState("")
+    const [passwordError, updatePasswordError] = React.useState("")
+    const [usernameError, updateUsernameError] = React.useState("")
     const [password, updatePassword] = React.useState("")
+    const [username, updateUsername] = React.useState("")
     const user = useSelector(state => state.sudoku.user)
-    const [login, updateLogin] = React.useState("")
     const dispatch = useDispatch()
 
     const checkEmptyInput = _ => {
         password === "" && updatePasswordError("*заполните поле")
-        login === "" && updateLoginError("*заполните поле")
-        return password === "" || login === ""
+        username === "" && updateUsernameError("*заполните поле")
+        return password === "" || username === ""
     }
 
     const createHandler = _ => {
@@ -26,22 +26,22 @@ function Create() {
         }
         const data = {
             password: password,
-            username: login,
+            username: username,
         }
-        axios.post('/api/account/', { data: data })
+        axios.post('/api/account/', data)
             .then(data => {
                 const token = data.data.token
                 localStorage.setItem("token", token)
                 dispatch(updateState({ token: token }))
             })
             .catch(_ => {
-                updateLoginError("*логин уже занят")
+                updateUsernameError("*логин уже занят")
             })
     }
 
     const onChangeHandler = (func, value) => {
         updatePasswordError("")
-        updateLoginError("")
+        updateUsernameError("")
         func(value)
     }
 
@@ -54,14 +54,14 @@ function Create() {
                 <div className={classNames("settings-inner-box")}>
                     <div>
                         <InputComponent
-                            onChange={e => onChangeHandler(updateLogin, e.target.value)}
-                            error={loginError}
-                            value={login}
+                            onChange={e => onChangeHandler(updateUsername, e.target.value)}
+                            error={usernameError}
+                            value={username}
                             text="Логин"
                         />
                         <InputComponent
                             onChange={e => onChangeHandler(updatePassword, e.target.value)}
-                            error={PasswordError}
+                            error={passwordError}
                             value={password}
                             text="Пароль"
                         />
