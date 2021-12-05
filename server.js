@@ -16,6 +16,10 @@ app.post('/api/account/login/', urlencodedParser, (req, res) => {
 })
 
 app.post('/api/account/', urlencodedParser, (req, res) => {
+    res.send('{"token":"token"}')
+})
+
+app.get('/api/account/', urlencodedParser, (req, res) => {
     res.send('{"username":"root"}')
 })
 

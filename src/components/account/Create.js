@@ -1,13 +1,12 @@
 import { updateState } from '../../reducers/sudokuSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom"
 import InputComponent from './InputComponent'
 import classNames from 'classnames'
-import React from 'react'
 import axios from 'axios'
+import React from 'react'
 
-
-function Login(props) {
+function Create() {
     const [PasswordError, updatePasswordError] = React.useState("")
     const [loginError, updateLoginError] = React.useState("")
     const [password, updatePassword] = React.useState("")
@@ -21,23 +20,22 @@ function Login(props) {
         return password === "" || login === ""
     }
 
-    const loginHandler = _ => {
+    const createHandler = _ => {
         if (checkEmptyInput()) {
             return
         }
         const data = {
             password: password,
-            login: login,
+            username: login,
         }
-        axios.post("/api/account/login/", { data: data })
+        axios.post('/api/account/', { data: data })
             .then(data => {
                 const token = data.data.token
                 localStorage.setItem("token", token)
                 dispatch(updateState({ token: token }))
             })
-            .catch(err => {
-                updatePasswordError("*неверные данные")
-                updateLoginError("*неверные данные")
+            .catch(_ => {
+                updateLoginError("*логин уже занят")
             })
     }
 
@@ -70,17 +68,17 @@ function Login(props) {
                     </div>
                 </div>
                 <div className={classNames("login-button")}>
-                    <button onClick={loginHandler} className={classNames("login")}>
-                        войти
+                    <button onClick={createHandler} className={classNames("login")}>
+                        создать
                     </button>
                 </div>
                 <div className={classNames("account-link")}>
-                    <p className={classNames("mr1")}>Если нет аккаунта, то можете его</p>
-                    <Link className={classNames("setting-link")} to="/create">создать.</Link>
+                    <p className={classNames("mr1")}>Уже есть аккаунт?</p>
+                    <Link className={classNames("setting-link")} to="/login">войдите.</Link>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login
+export default Create

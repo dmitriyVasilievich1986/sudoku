@@ -1,4 +1,4 @@
-import { Account, Navbar, SudokuPage, Settings, StartNewGame, Login } from './components'
+import { Account, Create, Navbar, SudokuPage, Settings, StartNewGame, Login } from './components'
 import { updateState } from './reducers/sudokuSlice'
 import { Provider, useDispatch } from 'react-redux'
 import reactDOM from 'react-dom'
@@ -32,7 +32,7 @@ function App() {
                 <Route exact path="/sudoku" component={SudokuPage} />
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/account" component={Account} />
-                <Route exact path="/account" component={Account} />
+                <Route exact path="/create" component={Create} />
                 <Route exact path="/login" component={Login} />
                 <Redirect to="/start/" />
             </Switch>
