@@ -6,13 +6,31 @@ import Numbers from './Numbers'
 import Options from './Options'
 import React from 'react'
 import Line from './Line'
+import axios from 'axios'
 
 function SudokuPage(props) {
+    const numberBalance = useSelector(state => state.sudoku.numberBalance)
     const endGame = useSelector(state => state.sudoku.endGame)
     const matrix = useSelector(state => state.sudoku.matrix)
     const timer = useSelector(state => state.sudoku.timer)
+    const token = useSelector(state => state.sudoku.token)
+    const user = useSelector(state => state.sudoku.user)
     const dispatch = useDispatch()
     const history = useHistory()
+
+    React.useEffect(_ => {
+        if (user !== null) {
+            const sudoku_cube = {
+                matrix: matrix, endGame: endGame, numberBalance: numberBalance, timer: timer,
+            }
+            const data = { sudoku_cube: JSON.stringify(sudoku_cube) }
+            const headers = { Authorization: `token ${token}` }
+            axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
+                .catch(e => {
+                    console.log(e)
+                })
+        }
+    }, [matrix, timer])
 
     React.useEffect(_ => {
         if (!endGame) {

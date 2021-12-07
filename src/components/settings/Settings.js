@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import Selector from './Selector'
 import React from 'react'
+import axios from 'axios'
 
 import Switch from '@material-ui/core/Switch';
 
@@ -14,31 +15,53 @@ const difficultLevels = [
 ]
 
 function Settings() {
-    const emptyCount = useSelector(state => state.sudoku.emptyCount)
+    const dificulty = useSelector(state => state.sudoku.dificulty)
+    const token = useSelector(state => state.sudoku.token)
     const help = useSelector(state => state.sudoku.help)
+    const user = useSelector(state => state.sudoku.user)
     const dispatch = useDispatch()
 
     const changeDifficultyHandler = v => {
-        localStorage.setItem("emptyCount", v)
-        dispatch(updateState({ emptyCount: v }))
+        const data = { dificulty: v }
+        if (user) {
+            const headers = { Authorization: `token ${token}` }
+            axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
+                .then(data => {
+                    dispatch(updateState({ dificulty: data.data.dificulty }))
+                })
+                .catch(e => console.log(e))
+        } else {
+            dispatch(updateState(data))
+        }
     }
 
     const changeHelpHandler = _ => {
-        localStorage.setItem("help", !help)
-        dispatch(updateState({ help: !help }))
+        const data = { help: !help }
+        if (user) {
+            const headers = { Authorization: `token ${token}` }
+            axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
+                .then(data => {
+                    dispatch(updateState({ help: data.data.help }))
+                })
+                .catch(e => console.log(e))
+        } else {
+            dispatch(updateState(data))
+        }
     }
 
     return (
         <div className={classNames("settings-window")}>
             <div className={classNames("settings-wraper")}>
                 <div className={classNames("settings-inner-box")}>
-                    <div className={classNames("settings-value")}>
-                        <p>Сложность:</p>
-                        <Selector selected={emptyCount} values={difficultLevels} onChange={changeDifficultyHandler} />
-                    </div>
-                    <div className={classNames("settings-value")}>
-                        <p>Подсказки:</p>
-                        <Switch checked={help} onChange={changeHelpHandler} />
+                    <div>
+                        <div className={classNames("settings-value")}>
+                            <p>Сложность:</p>
+                            <Selector selected={dificulty} values={difficultLevels} onChange={changeDifficultyHandler} />
+                        </div>
+                        <div className={classNames("settings-value")}>
+                            <p>Подсказки:</p>
+                            <Switch checked={help} onChange={changeHelpHandler} />
+                        </div>
                     </div>
                 </div>
             </div>

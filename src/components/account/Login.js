@@ -29,7 +29,7 @@ function Login(props) {
             password: password,
             username: username,
         }
-        axios.post("/api/account/login/", data)
+        axios.post(`${process.env.REACT_APP_API_URL}login/`, data)
             .then(data => {
                 const token = data.data.token
                 localStorage.setItem("token", token)

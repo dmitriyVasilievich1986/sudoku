@@ -24,7 +24,7 @@ function Account(props) {
             name: name,
         }
         const headers = { Authorization: `token ${token}` }
-        axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
+        axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
             .then(data => {
                 const user = IUser(data.data)
                 dispatch(updateState({ user: user }))

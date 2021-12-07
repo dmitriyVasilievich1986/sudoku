@@ -28,7 +28,7 @@ function Create() {
             password: password,
             username: username,
         }
-        axios.post('/api/account/', data)
+        axios.post(`${process.env.REACT_APP_API_URL}`, data)
             .then(data => {
                 const token = data.data.token
                 localStorage.setItem("token", token)
