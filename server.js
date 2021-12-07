@@ -4,6 +4,8 @@ const express = require('express')
 require('dotenv').config()
 const app = express()
 
+const User = '{"username":"root"}'
+
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const host = process.env.HOST || "localhost"
@@ -20,11 +22,11 @@ app.post('/api/account/', urlencodedParser, (req, res) => {
 })
 
 app.get('/api/account/', urlencodedParser, (req, res) => {
-    res.send('{"username":"root"}')
+    res.send(User)
 })
 
 app.patch('/api/account/', urlencodedParser, (req, res) => {
-    res.send('{"username":"root"}')
+    res.send(User)
 })
 
 app.post('/api/account/logout/', urlencodedParser, (req, res) => {
