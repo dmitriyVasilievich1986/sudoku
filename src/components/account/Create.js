@@ -73,8 +73,10 @@ function Create() {
                     </button>
                 </div>
                 <div className={classNames("account-link")}>
-                    <p className={classNames("mr1")}>Уже есть аккаунт?</p>
-                    <Link className={classNames("setting-link")} to="/login">войдите.</Link>
+                    <p>
+                        Уже есть аккаунт?
+                        <Link className={classNames("ml1", "account-link-create")} to="/login">войдите.</Link>
+                    </p>
                 </div>
             </div>
         </div>

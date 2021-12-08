@@ -75,8 +75,10 @@ function Login(props) {
                     </button>
                 </div>
                 <div className={classNames("account-link")}>
-                    <p className={classNames("mr1")}>Если нет аккаунта, то можете его</p>
-                    <Link className={classNames("setting-link")} to="/create">создать.</Link>
+                    <p>
+                        Если нет аккаунта, то можете его
+                        <Link className={classNames("ml1", "account-link-create")} to="/create">создать.</Link>
+                    </p>
                 </div>
             </div>
         </div>

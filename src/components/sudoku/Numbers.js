@@ -16,9 +16,11 @@ function Numbers(props) {
     }
 
     return (
-        <div className={classNames("sudoku-numbers")}>
+        <div style={{ display: "flex", width: "90%" }}>
+            {/* <div className={classNames("sudoku-numbers")}> */}
             {Object.keys(numberBalance).map(n => (
-                <div key={n} className={classNames("number-line")}>
+                <div key={n} style={{ width: "100%" }}>
+                    {/* <div key={n} className={classNames("number-line")}> */}
                     <div
                         className={classNames("one-point", {
                             selected: selected[0] && matrix[selected[0]][selected[1]].number.indexOf(parseInt(n)) >= 0,

@@ -53,7 +53,7 @@ function Settings() {
         <div className={classNames("settings-window")}>
             <div className={classNames("settings-wraper")}>
                 <div className={classNames("settings-inner-box")}>
-                    <div>
+                    <div style={{ minHeight: "250px" }}>
                         <div className={classNames("settings-value")}>
                             <p>Сложность:</p>
                             <Selector selected={dificulty} values={difficultLevels} onChange={changeDifficultyHandler} />

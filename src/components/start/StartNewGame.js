@@ -21,26 +21,22 @@ function StartNewGame(props) {
     }
     return (
         <div className={classNames("new-start-wraper")}>
-            <div>
-                <div>
-                    <button
-                        className={classNames("start-button", {
-                            disable: endGame || matrix === null,
-                        })}
-                        disabled={endGame || matrix === null}
-                        onClick={continueClickHandler}
-                    >
-                        Продолжить игру
-                    </button>
-                </div>
-                <div className={classNames("mt2")}>
-                    <button
-                        className={classNames("start-button")}
-                        onClick={newGameClickHandler}
-                    >
-                        Новая игра
-                    </button>
-                </div>
+            <div className={classNames("start-button-wraper")}>
+                <button
+                    className={classNames("start-button", {
+                        disable: endGame || matrix === null,
+                    })}
+                    disabled={endGame || matrix === null}
+                    onClick={continueClickHandler}
+                >
+                    Продолжить
+                </button>
+                <button
+                    className={classNames("start-button")}
+                    onClick={newGameClickHandler}
+                >
+                    Новая игра
+                </button>
             </div>
         </div>
     )

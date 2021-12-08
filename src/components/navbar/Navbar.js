@@ -41,10 +41,10 @@ function Navbar(props) {
 
     const getUser = _ => {
         if (user === null) {
-            return <Link className="link" to="/login">Войти</Link>
+            return <Link className={classNames("link", "m2")} to="/login">Войти</Link>
         }
         return (
-            <div style={{ display: "flex" }}>
+            <div className={classNames("row", "m2")}>
                 <Link className="link" to="/account">
                     {user.username}
                 </Link>
@@ -65,13 +65,11 @@ function Navbar(props) {
 
     return (
         <div className={classNames("navbar")}>
-            <div className={classNames("fl3")} />
-            <div className={classNames("fl3", "navbar-main")}>
-                <Link className="link" to="/">Главная</Link>
-                <Link className="link" to="/settings">Настройки</Link>
+            <div className={classNames("navbar-main")}>
+                <Link className={classNames("link", "m2")} to="/">Главная</Link>
+                <Link className={classNames("link", "m2")} to="/settings">Настройки</Link>
                 {getUser()}
             </div>
-            <div className={classNames("fl3")} />
         </div>
     )
 }
