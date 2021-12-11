@@ -23,10 +23,10 @@ function Navbar(props) {
                         dispatch(updateState({
                             dificulty: parseInt(data.data.dificulty),
                             numberBalance: S.numberBalance,
+                            timer: data.data.timer,
                             help: data.data.help,
                             endGame: S.endGame,
                             matrix: S.matrix,
-                            timer: S.timer,
                             user: user,
                         }))
                     } else {

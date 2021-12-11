@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { setMatrix, updateState } from '../../reducers/sudokuSlice'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import classNames from 'classnames'
 import React from 'react'

@@ -6,14 +6,16 @@ export function getBalance() {
 }
 
 export function getNewBalance(balance, oldNumber, newNumber) {
-    switch (oldNumber.length) {
-        case 0:
-        case 2:
-            return { ...balance, [newNumber]: balance[newNumber] + 1 }
-        case 1:
-            return { ...balance, [oldNumber[0]]: balance[oldNumber[0]] - 1 }
-        default:
-            return balance
+    const oldLength = oldNumber.length
+    if (oldLength == 1) {
+        return { ...balance, [oldNumber[0]]: balance[oldNumber[0]] - 1 }
+    } else if (oldLength == 2 && oldNumber.indexOf(newNumber) >= 0) {
+        const newIndex = oldNumber.filter(n => n != newNumber)[0]
+        return { ...balance, [newIndex]: balance[newIndex] + 1 }
+    } else if (oldLength == 0) {
+        return { ...balance, [newNumber]: balance[newNumber] + 1 }
+    } else {
+        return balance
     }
 }
 

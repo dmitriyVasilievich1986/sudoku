@@ -21,7 +21,7 @@ function SudokuPage(props) {
     React.useEffect(_ => {
         if (user !== null) {
             const sudoku_cube = {
-                matrix: matrix, endGame: endGame, numberBalance: numberBalance, timer: timer,
+                matrix: matrix, endGame: endGame, numberBalance: numberBalance,
             }
             const data = { sudoku_cube: JSON.stringify(sudoku_cube) }
             const headers = { Authorization: `token ${token}` }
@@ -35,6 +35,14 @@ function SudokuPage(props) {
     React.useEffect(_ => {
         if (!endGame) {
             const intervalId = setInterval(() => {
+                if (user) {
+                    const data = { timer: timer }
+                    const headers = { Authorization: `token ${token}` }
+                    axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
+                        .catch(e => {
+                            console.log(e)
+                        })
+                }
                 dispatch(updateTimer())
             }, 1000);
 
@@ -71,7 +79,7 @@ function SudokuPage(props) {
                 <div className={classNames("sudoku-page-line")}>
                     <Numbers />
                 </div>
-                <div className={classNames("sudoku-page-line")}>
+                <div className={classNames("sudoku-page-line")} style={{ height: "80px" }}>
                     <Options />
                     {
                         endGame &&
