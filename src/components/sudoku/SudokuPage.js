@@ -1,7 +1,8 @@
-import { updateTimer } from '../../reducers/sudokuSlice'
+import { updateState, updateTimer } from '../../reducers/sudokuSlice'
 import { useHistory, Redirect } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
+import IUser from '../account/User'
 import Numbers from './Numbers'
 import Options from './Options'
 import React from 'react'
@@ -51,7 +52,11 @@ function SudokuPage(props) {
         if (endGame) {
             const data = { dificulty: dificulty, timer: timer }
             const headers = { Authorization: `token ${token}` }
-            axios.post(`${process.env.REACT_APP_API_URL}account/history/`, data, { headers: headers })
+            axios.post(`${process.env.REACT_APP_API_URL}history/`, data, { headers: headers })
+                .then(data => {
+                    const U = IUser(data.data)
+                    dispatch(updateState({ user: U }))
+                })
                 .catch(e => console.log(e))
         }
     }, [endGame])

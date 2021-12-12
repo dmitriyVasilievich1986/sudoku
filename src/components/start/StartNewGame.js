@@ -26,7 +26,7 @@ function StartNewGame(props) {
         return dificultyObject.text
     }
     const getBestTime = _ => {
-        const bestTime = parseInt(user.history[dificulty])
+        const bestTime = parseInt(user.history[dificulty] || 0)
         if (bestTime == 0) {
             return "Нет"
         }
@@ -39,7 +39,7 @@ function StartNewGame(props) {
     }
 
     const getTimer = _ => {
-        if (!timer) {
+        if (!timer || endGame) {
             return null
         }
         let min = parseInt(timer / 60)
