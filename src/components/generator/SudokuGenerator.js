@@ -19,8 +19,8 @@ function pattern(r, c) {
 function setEmpty(list, emptyCount) {
     const empty = shuffle([...Array(81).keys()]).slice(0, emptyCount)
     empty.map(p => {
-        const x = parseInt(p / 10)
-        const y = p - x * 10
+        const x = parseInt(p / 9)
+        const y = p - x * 9
         list[x][y < 9 ? y : 8].show = false
         list[x][y < 9 ? y : 8].number = []
     })

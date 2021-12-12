@@ -8,11 +8,14 @@ import axios from 'axios'
 import Switch from '@material-ui/core/Switch';
 
 const difficultLevels = [
-    { value: "1", text: "Тест", },
     { value: "20", text: "Легкий", },
     { value: "40", text: "Средний", },
-    { value: "60", text: "Тяжелый", },
+    { value: "50", text: "Тяжелый", },
+    { value: "60", text: "Максимальный", },
 ]
+if (process.env.NODE_ENV) {
+    difficultLevels.push({ value: "1", text: "Тест" })
+}
 
 function Settings() {
     const dificulty = useSelector(state => state.sudoku.dificulty)
