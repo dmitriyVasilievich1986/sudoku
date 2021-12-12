@@ -1,4 +1,4 @@
-import { updateState, updateTimer } from '../../reducers/sudokuSlice'
+import { updateTimer } from '../../reducers/sudokuSlice'
 import { useHistory, Redirect } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
@@ -10,6 +10,7 @@ import axios from 'axios'
 
 function SudokuPage(props) {
     const numberBalance = useSelector(state => state.sudoku.numberBalance)
+    const dificulty = useSelector(state => state.sudoku.dificulty)
     const endGame = useSelector(state => state.sudoku.endGame)
     const matrix = useSelector(state => state.sudoku.matrix)
     const timer = useSelector(state => state.sudoku.timer)
@@ -25,10 +26,8 @@ function SudokuPage(props) {
             }
             const data = { sudoku_cube: JSON.stringify(sudoku_cube) }
             const headers = { Authorization: `token ${token}` }
-            axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
-                .catch(e => {
-                    console.log(e)
-                })
+            axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
+                .catch(e => console.log(e))
         }
     }, [matrix, timer])
 
@@ -38,10 +37,8 @@ function SudokuPage(props) {
                 if (user) {
                     const data = { timer: timer }
                     const headers = { Authorization: `token ${token}` }
-                    axios.patch(`/api/account/${user.id}/`, data, { headers: headers })
-                        .catch(e => {
-                            console.log(e)
-                        })
+                    axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
+                        .catch(e => console.log(e))
                 }
                 dispatch(updateTimer())
             }, 1000);
@@ -49,6 +46,15 @@ function SudokuPage(props) {
             return _ => clearInterval(intervalId)
         }
     }, [timer])
+
+    React.useEffect(_ => {
+        if (endGame) {
+            const data = { dificulty: dificulty, timer: timer }
+            const headers = { Authorization: `token ${token}` }
+            axios.post(`${process.env.REACT_APP_API_URL}account/history/`, data, { headers: headers })
+                .catch(e => console.log(e))
+        }
+    }, [endGame])
 
     const clickHandler = _ => {
         history.push('/start')

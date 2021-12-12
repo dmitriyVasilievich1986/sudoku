@@ -33,6 +33,10 @@ app.post('/api/account/logout/', urlencodedParser, (req, res) => {
     res.send('ok')
 })
 
+app.post('/api/account/history/', urlencodedParser, (req, res) => {
+    res.status(400).send('ok')
+})
+
 app.all("*", (req, res) => {
     res.sendFile(__dirname + "/template/index.html");
 })
