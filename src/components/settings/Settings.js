@@ -1,21 +1,12 @@
 import { updateState } from '../../reducers/sudokuSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import DificultyLevels from './DificultyLevels'
+import Switch from '@material-ui/core/Switch';
 import classNames from 'classnames'
 import Selector from './Selector'
 import React from 'react'
 import axios from 'axios'
 
-import Switch from '@material-ui/core/Switch';
-
-const difficultLevels = [
-    { value: "20", text: "Легкий", },
-    { value: "40", text: "Средний", },
-    { value: "50", text: "Тяжелый", },
-    { value: "60", text: "Максимальный", },
-]
-if (process.env.NODE_ENV) {
-    difficultLevels.push({ value: "1", text: "Тест" })
-}
 
 function Settings() {
     const dificulty = useSelector(state => state.sudoku.dificulty)
@@ -64,7 +55,7 @@ function Settings() {
                     <div style={{ minHeight: "250px" }}>
                         <div className={classNames("settings-value")}>
                             <p>Сложность:</p>
-                            <Selector selected={dificulty} values={difficultLevels} onChange={changeDifficultyHandler} />
+                            <Selector selected={dificulty} values={DificultyLevels} onChange={changeDifficultyHandler} />
                         </div>
                         <div className={classNames("settings-value")}>
                             <p>Подсказки:</p>

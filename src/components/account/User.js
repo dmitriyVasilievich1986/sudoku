@@ -1,6 +1,7 @@
 const IUser = props => {
-    const { id, username, name, surname } = props
+    const { id, username, name, surname, history } = props
     return {
+        history: history || null,
         username: username || "",
         surname: surname || "",
         name: name || "",

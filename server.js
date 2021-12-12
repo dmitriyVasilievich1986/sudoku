@@ -4,7 +4,7 @@ const express = require('express')
 require('dotenv').config()
 const app = express()
 
-const User = '{"username":"root", "dificulty": 60, "help": true, "id": 1}'
+const User = '{"username":"root", "dificulty": 60, "help": true, "id": 1, "history": {"40":0, "50":0, "60":0}}'
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
