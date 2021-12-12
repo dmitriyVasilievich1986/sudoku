@@ -19,6 +19,7 @@ if (process.env.NODE_ENV) {
 
 function Settings() {
     const dificulty = useSelector(state => state.sudoku.dificulty)
+    const endGame = useSelector(state => state.sudoku.endGame)
     const token = useSelector(state => state.sudoku.token)
     const help = useSelector(state => state.sudoku.help)
     const user = useSelector(state => state.sudoku.user)
@@ -30,7 +31,11 @@ function Settings() {
             const headers = { Authorization: `token ${token}` }
             axios.patch(`${process.env.REACT_APP_API_URL}${user.id}/`, data, { headers: headers })
                 .then(data => {
-                    dispatch(updateState({ dificulty: data.data.dificulty }))
+                    const newDificulty = data.data.dificulty
+                    dispatch(updateState({
+                        endGame: newDificulty != dificulty ? true : endGame,
+                        dificulty: data.data.dificulty,
+                    }))
                 })
                 .catch(e => console.log(e))
         } else {
